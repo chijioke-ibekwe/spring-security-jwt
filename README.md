@@ -1,0 +1,1 @@
+# Spring Security JWT Project Starter

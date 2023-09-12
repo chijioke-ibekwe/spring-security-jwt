@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: starter
+  datasource:
+    password: postgres
+    url: jdbc:postgresql://localhost:5431/starter
+    username: postgres
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  liquibase:
+    change-log: 'classpath:/db/changelog-master.yaml'
+
+authentication:
+  secret-key: ${{ SECRET_KEY }}
+  access-token:
+    expiration-in-seconds: 1800
+  refresh-token:
+    expiration-in-seconds: 86400
