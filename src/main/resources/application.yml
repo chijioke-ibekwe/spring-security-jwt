@@ -3,10 +3,10 @@ server:
 
 spring:
   application:
-    name: starter
+    name: spring-security-jwt
   datasource:
     password: postgres
-    url: jdbc:postgresql://localhost:5431/starter
+    url: jdbc:postgresql://localhost:5431/spring-security-jwt
     username: postgres
   jpa:
     properties:
