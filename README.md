@@ -25,12 +25,12 @@
 ## 🧐 About <a name = "about"></a>
 This project is a fully configured Spring Security JWT module using the new Spring Boot 3 and Spring Security 6 
 frameworks. It provides all the spring security JWT starter code you need to quickly bootstrap your small to medium scale 
-projects, and allows you to focus on your peculiar business logic. This module has the following features:
+projects, allowing you to focus on your peculiar business logic. This project supports the following features:
 - User registration
 - User login using the password grant type
 - User token refresh using the refresh token
 - User logout
-- API method security using user roles and permissions
+- API method security with user roles and permissions
 
 **If you find this project useful, kindly drop a star on this repo. I'll really appreciate it.**
 
@@ -59,12 +59,12 @@ This command will spin-up the following containers running in a detached mode:
 - A postgres database running on `localhost:5431`, and 
 - A pgAdmin UI running on `localhost:5050` for managing the database.
 
-- Using the `pgAdmin` interface or your `psql`, set up a database called starter. If you wish to name this database 
+4. Using the `pgAdmin` interface or your `psql`, set up a database called starter. If you wish to name this database 
 something different, do well to update the `application.yml` file with the correct database name.
 
-- Lastly, setup an env variable called `SECRET_KEY` whose value will be used in signing and decoding your jwt token.
+5. Lastly, setup an env variable called `SECRET_KEY` whose value will be used in signing and decoding your jwt token.
 
-- Go ahead and start building your own peculiar business logic, and implementing any customizations you desire.
+Go ahead and start customizing as you desire.
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Spring Boot v3.1.2](https://www.mongodb.com/) - Spring Boot 3
