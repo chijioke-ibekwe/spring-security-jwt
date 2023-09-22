@@ -3,8 +3,8 @@
 <div align="center">
 
 [![Status](https://img.shields.io/badge/status-active-success.svg)]()
-[![GitHub Issues](https://img.shields.io/github/issues/kylelobo/The-Documentation-Compendium.svg)](https://github.com/chijioke-ibekwe/spring-security-jwt/issues)
-[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/kylelobo/The-Documentation-Compendium.svg)](https://github.com/chijioke-ibekwe/spring-security-jwt/pulls)
+[![GitHub Issues](https://img.shields.io/github/issues/chijioke-ibekwe/The-Documentation-Compendium.svg)](https://github.com/chijioke-ibekwe/spring-security-jwt/issues)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/chijioke-ibekwe/The-Documentation-Compendium.svg)](https://github.com/chijioke-ibekwe/spring-security-jwt/pulls)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
 
 </div>
@@ -46,21 +46,21 @@ To use this module in your project:
 1. Fork the repository
 
 2. Clone the repository using the following command:
-```
-git clone https://github.com/<your-git-username>/spring-security-jwt.git
-```
+   ```
+   git clone https://github.com/<your-git-username>/spring-security-jwt.git
+   ```
 
 3. A docker compose file is attached to this project to help you easily set up a development database. To do this,
-  run the following command in your terminal or command prompt
-```
-docker compose up -d
-```
-This command will spin-up the following containers running in a detached mode: 
-- A postgres database running on `localhost:5431`, and 
-- A pgAdmin UI running on `localhost:5050` for managing the database.
+   run the following command in your terminal or command prompt
+   ```
+   docker compose up -d
+   ```
+   This command will spin-up the following containers running in a detached mode: 
+   - A postgres database running on `localhost:5431`, and 
+   - A pgAdmin UI running on `localhost:5050` for managing the database.
 
 4. Using the `pgAdmin` interface or your `psql`, set up a database called starter. If you wish to name this database 
-something different, do well to update the `application.yml` file with the correct database name.
+   something different, do well to update the `application.yml` file with the correct database name.
 
 5. Lastly, setup an env variable called `SECRET_KEY` whose value will be used in signing and decoding your jwt token.
 
