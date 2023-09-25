@@ -53,7 +53,7 @@ class AuthenticationControllerTest {
                 .password("password")
                 .build();
 
-        when(authenticationService.authenticate(any(AuthenticationRequest.class))).thenReturn(response);
+        when(authenticationService.login(any(AuthenticationRequest.class))).thenReturn(response);
 
         this.mockMvc.perform(post("/api/v1/auth/login")
                         .content(objectMapper.writeValueAsString(request))
