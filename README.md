@@ -11,7 +11,7 @@
 
 ---
 
-<p align="center"> Spring Boot project starter fully configured with JWT authentication and authorization, using Spring Boot 3 and Spring Security 6. Features user login, logout, token refresh and user roles/permissions
+<p align="center"> Spring Boot project starter code fully configured with JWT authentication and authorization, using Spring Boot 3 and Spring Security 6. Features user login, logout, token refresh and user roles/permissions
     <br> 
 </p>
 
@@ -23,7 +23,7 @@
 - [Authors](#authors)
 
 ## 🧐 About <a name = "about"></a>
-This project is a fully configured Spring Security JWT module using the new Spring Boot 3 and Spring Security 6 
+This is a fully configured Spring Security JWT module using the new Spring Boot 3 and Spring Security 6 
 frameworks. It provides all the spring security JWT starter code you need to quickly bootstrap your small to medium scale 
 projects, allowing you to focus on your peculiar business logic. This project supports the following features:
 - User registration
@@ -32,17 +32,17 @@ projects, allowing you to focus on your peculiar business logic. This project su
 - User logout
 - API method security with user roles and permissions
 
-**If you find this project useful, kindly drop a star on this repo. I'll really appreciate it.**
+**If you find this project useful, kindly drop a star on this repo. I'd really appreciate it.**
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites  
-To successfully use this module in your project, you'll need:
-- **Java 17 as a minimum version.** That is because this project was developed using Spring Boot 3, which requires Java 17
+To successfully use this project, you'll need:
+- **JDK >= v17.** That is because this project was developed using Spring Boot 3, which requires Java 17
 as a minimum version.
 - **Apache Maven**
 
 ## 🎈 Usage <a name="usage"></a>
-To use this module in your project:
+To use this project:
 1. Fork the repository
 
 2. Clone the repository using the following command:
@@ -59,15 +59,23 @@ To use this module in your project:
    - A postgres database running on `localhost:5431`, and 
    - A pgAdmin UI running on `localhost:5050` for managing the database.
 
-4. Using the `pgAdmin` interface or your `psql`, set up a database called starter. If you wish to name this database 
-   something different, do well to update the `application.yml` file with the correct database name.
+4. Using the `pgAdmin` interface or your `psql`, create a database called `starter`. If you wish to name this database 
+   something different, make sure to update the database configuration in the `application.yml` file.
 
-5. Lastly, setup an env variable called `SECRET_KEY` whose value will be used in signing and decoding your jwt token.
+5. Setup an env variable called `SECRET_KEY`. This value will be used in signing and decoding your JWT.
 
-Go ahead and start customizing as you desire.
+6. Lastly, run the following command to start the application:
+   ```
+   mvn clean compile exec:java
+   ```
+   Liquibase will run the migration files within the `resources/db` directory, upon startup, to set up the database.
+   The schema created will have the following structure.  
+   <img height="300" src="../../../Pictures/jwt-project-starter-schema-2.png" width="500"/>
+
+Feel free to begin customizations!
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [Spring Boot v3.1.2](https://www.mongodb.com/) - Spring Boot 3
+- [Spring Boot v3.1.2](https://spring.io/projects/spring-boot) - Spring Boot 3
 - [PostgreSQL](https://www.postgresql.org/) - PostgreSQL Database
 
 ## ✍️ Authors <a name = "authors"></a>
