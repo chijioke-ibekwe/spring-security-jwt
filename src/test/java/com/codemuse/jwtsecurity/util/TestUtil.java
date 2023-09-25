@@ -4,6 +4,10 @@ import com.codemuse.jwtsecurity.dto.request.UserRegistrationRequest;
 import com.codemuse.jwtsecurity.dto.response.AuthenticationResponse;
 import com.codemuse.jwtsecurity.dto.response.RoleResponse;
 import com.codemuse.jwtsecurity.dto.response.UserResponse;
+import com.codemuse.jwtsecurity.entity.Permission;
+import com.codemuse.jwtsecurity.entity.Role;
+import com.codemuse.jwtsecurity.entity.User;
+import com.codemuse.jwtsecurity.enums.RoleName;
 import com.codemuse.jwtsecurity.enums.UserType;
 
 import java.util.List;
@@ -46,6 +50,42 @@ public class TestUtil {
                         .name("ROLE_ADMIN")
                         .permissions(List.of("users:read"))
                         .build()))
+                .build();
+    }
+
+    public Role getRole() {
+
+        return Role.builder()
+                .id(1L)
+                .description("Role with admin permissions")
+                .name(RoleName.ROLE_ADMIN)
+                .permissions(this.getPermissions())
+                .build();
+    }
+
+    private Set<Permission> getPermissions() {
+
+        return Set.of(
+                Permission.builder()
+                        .name("user:read")
+                        .description("Ability to fetch all users")
+                        .build(),
+                Permission.builder()
+                        .name("user:write")
+                        .description("Ability to create a user")
+                        .build()
+        );
+    }
+
+    public User getUser() {
+
+        return User.builder()
+                .id(1L)
+                .firstName("John")
+                .lastName("Doe")
+                .username("john.doe@starter.com")
+                .phoneNumber("+2348012345678")
+                .roles(Set.of(this.getRole()))
                 .build();
     }
 }
