@@ -20,7 +20,7 @@ public class Mapper {
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         user.getRoles().forEach(r -> {
-            authorities.add(new SimpleGrantedAuthority(r.getName()));
+            authorities.add(new SimpleGrantedAuthority(r.getName().getValue()));
 
             r.getPermissions().forEach(p ->  {
                 if(user.isVerified()){
