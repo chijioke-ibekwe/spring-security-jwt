@@ -1,5 +1,6 @@
 package com.codemuse.jwtsecurity.entity;
 
+import com.codemuse.jwtsecurity.enums.RoleName;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -22,8 +23,9 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Enumerated(value = EnumType.STRING)
     @NotNull(message = "Role name is required")
-    private String name;
+    private RoleName name;
 
     private String description;
 
