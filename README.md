@@ -59,8 +59,8 @@ To use this project:
    - A postgres database running on `localhost:5431`, and 
    - A pgAdmin UI running on `localhost:5050` for managing the database.
 
-4. Using the `pgAdmin` interface or your `psql`, create a database called `starter`. If you wish to name this database 
-   something different, make sure to update the database configuration in the `application.yml` file.
+4. Using the `pgAdmin` interface or your `psql`, create a database called `spring-security-jwt`. If you wish to name 
+   this database something different, make sure to update the database configuration in the `application.yml` file.
 
 5. Setup an env variable called `SECRET_KEY`. This value will be used in signing and decoding your JWT.
 
