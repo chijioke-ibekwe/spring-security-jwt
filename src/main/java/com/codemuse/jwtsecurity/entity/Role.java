@@ -23,7 +23,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Enumerated(value = EnumType.STRING)
     @NotNull(message = "Role name is required")
     private RoleName name;
 

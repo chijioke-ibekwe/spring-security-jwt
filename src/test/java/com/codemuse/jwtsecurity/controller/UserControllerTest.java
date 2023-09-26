@@ -67,7 +67,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data.username").value(response.getUsername()))
                 .andExpect(jsonPath("$.data.phoneNumber").value(response.getPhoneNumber()))
                 .andExpect(jsonPath("$.data.verified").value(response.isVerified()))
-                .andExpect(jsonPath("$.data.roles[0].name").value(response.getRoles().get(0).getName()));
+                .andExpect(jsonPath("$.data.roles[0].name").value(response.getRoles().get(0).getName().getValue()));
     }
 
     @Test
@@ -99,7 +99,7 @@ class UserControllerTest {
                 .andExpect(jsonPath("$.data.content[0].username").value(response.getUsername()))
                 .andExpect(jsonPath("$.data.content[0].phoneNumber").value(response.getPhoneNumber()))
                 .andExpect(jsonPath("$.data.content[0].verified").value(response.isVerified()))
-                .andExpect(jsonPath("$.data.content[0].roles[0].name").value(response.getRoles().get(0).getName()));
+                .andExpect(jsonPath("$.data.content[0].roles[0].name").value(response.getRoles().get(0).getName().getValue()));
     }
 
 }

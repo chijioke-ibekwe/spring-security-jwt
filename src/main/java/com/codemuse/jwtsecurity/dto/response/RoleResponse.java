@@ -1,5 +1,6 @@
 package com.codemuse.jwtsecurity.dto.response;
 
+import com.codemuse.jwtsecurity.enums.RoleName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,7 +17,7 @@ public class RoleResponse {
 
     private Long id;
 
-    private String name;
+    private RoleName name;
 
     private List<String> permissions;
 }

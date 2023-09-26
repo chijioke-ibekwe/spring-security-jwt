@@ -22,7 +22,7 @@ public class RoleServiceImpl implements RoleService {
             case ADMIN -> RoleName.ROLE_ADMIN;
         };
 
-        return roleRepository.findByName(roleName.toString()).orElseThrow(() -> new
+        return roleRepository.findByName(roleName).orElseThrow(() -> new
                 EntityNotFoundException("Role not found"));
     }
 }

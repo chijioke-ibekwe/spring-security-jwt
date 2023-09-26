@@ -47,7 +47,7 @@ public class TestUtil {
                 .phoneNumber("+2348012345678")
                 .roles(List.of(RoleResponse.builder()
                         .id(2L)
-                        .name("ROLE_ADMIN")
+                        .name(RoleName.ROLE_ADMIN)
                         .permissions(List.of("users:read"))
                         .build()))
                 .build();

@@ -1,5 +1,7 @@
 package com.codemuse.jwtsecurity.enums;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum RoleName {
     ROLE_CUSTOMER ("role_customer"), ROLE_ADMIN ("role_admin");
 
@@ -9,6 +11,7 @@ public enum RoleName {
         this.value = value;
     }
 
+    @JsonValue
     public String getValue() {
         return value;
     }

@@ -1,8 +1,8 @@
 package com.codemuse.jwtsecurity.service;
 
-import com.codemuse.jwtsecurity.dto.response.RoleResponse;
 import com.codemuse.jwtsecurity.dto.response.UserResponse;
 import com.codemuse.jwtsecurity.entity.User;
+import com.codemuse.jwtsecurity.enums.RoleName;
 import com.codemuse.jwtsecurity.repository.UserRepository;
 import com.codemuse.jwtsecurity.service.impl.UserServiceImpl;
 import com.codemuse.jwtsecurity.util.TestUtil;
@@ -14,8 +14,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -57,11 +55,8 @@ public class UserServiceTest {
         assertThat(userArgumentCaptor.getValue().getUsername()).isEqualTo("john.doe@starter.com");
         assertThat(userArgumentCaptor.getValue().getPassword()).isEqualTo("abcde");
 
-        assertThat(response.getRoles()).contains(
-                RoleResponse.builder()
-                        .name("role_admin")
-                        .id(1L)
-                        .permissions(Arrays.asList("user:read", "user:write"))
-                        .build());
+        assertThat(response.getRoles().get(0).getId()).isEqualTo(1L);
+        assertThat(response.getRoles().get(0).getName()).isEqualTo(RoleName.ROLE_ADMIN);
+        assertThat(response.getRoles().get(0).getPermissions()).contains("user:read", "user:write");
     }
 }
