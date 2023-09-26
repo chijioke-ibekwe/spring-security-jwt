@@ -12,9 +12,14 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -69,5 +74,19 @@ public class UserServiceTest {
         assertThatThrownBy(() -> userService.registerUser(testUtil.getUserRegistrationRequest()))
                 .isInstanceOf(EntityExistsException.class)
                 .hasMessage("Email john.doe@starter.com already exists");
+    }
+
+    @Test
+    public void testGetAllUsers() {
+        when(userRepository.findAll(any(Pageable.class))).thenReturn(new PageImpl<>(List.of(testUtil.getUser())));
+
+        Page<UserResponse> response = userService.getAllUsers(Pageable.ofSize(10));
+
+        assertThat(response.getContent().get(0).getId()).isEqualTo(1L);
+        assertThat(response.getContent().get(0).getFirstName()).isEqualTo("John");
+        assertThat(response.getContent().get(0).getLastName()).isEqualTo("Doe");
+        assertThat(response.getContent().get(0).getUsername()).isEqualTo("john.doe@starter.com");
+        assertThat(response.getContent().get(0).getRoles().get(0).getName()).isEqualTo(RoleName.ROLE_ADMIN);
+        assertThat(response.getContent().get(0).getRoles().get(0).getPermissions()).contains("user:read", "user:write");
     }
 }
