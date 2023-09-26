@@ -6,6 +6,7 @@ import com.codemuse.jwtsecurity.enums.RoleName;
 import com.codemuse.jwtsecurity.repository.UserRepository;
 import com.codemuse.jwtsecurity.service.impl.UserServiceImpl;
 import com.codemuse.jwtsecurity.util.TestUtil;
+import jakarta.persistence.EntityExistsException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -16,6 +17,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -58,5 +60,14 @@ public class UserServiceTest {
         assertThat(response.getRoles().get(0).getId()).isEqualTo(1L);
         assertThat(response.getRoles().get(0).getName()).isEqualTo(RoleName.ROLE_ADMIN);
         assertThat(response.getRoles().get(0).getPermissions()).contains("user:read", "user:write");
+    }
+
+    @Test
+    public void testRegisterUser_whenUsernameAlreadyExists() {
+        when(userRepository.existsByUsername(any())).thenReturn(true);
+
+        assertThatThrownBy(() -> userService.registerUser(testUtil.getUserRegistrationRequest()))
+                .isInstanceOf(EntityExistsException.class)
+                .hasMessage("Email john.doe@starter.com already exists");
     }
 }
