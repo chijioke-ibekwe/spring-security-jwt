@@ -36,10 +36,11 @@ projects, allowing you to focus on your peculiar business logic. This project su
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites  
-To successfully use this project, you'll need:
+To successfully use this project, you'll need the following installed on your machine:
 - **JDK >= v17.** That is because this project was developed using Spring Boot 3, which requires Java 17
 as a minimum version.
 - **Apache Maven**
+- **Docker**
 
 ## 🎈 Usage <a name="usage"></a>
 To use this project:
