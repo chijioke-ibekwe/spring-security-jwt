@@ -19,6 +19,7 @@
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
+- [API Documentation](#api_docs)
 - [Built Using](#built_using)
 - [Authors](#authors)
 
@@ -74,6 +75,138 @@ To use this project:
    <img height="400" src="./src/main/resources/db/schema.png" width="600"/>
 
 Feel free to begin customizations!
+
+## API Documentation
+This project comes with the following APIs:
+1. `POST '/api/v1/users'`
+   - Registers a new user.
+   - Body: A JSON containing the details of the user as shown below:
+
+   ```json
+   {
+       "firstName": "John",
+       "lastName": "Doe",
+       "email": "john.doe@gmail.com",
+       "password": "password",
+       "phoneNumber": "+2348123456789",
+       "type": "ADMIN"
+   }
+   ```
+   - Returns: A JSON of the registered user's details.
+
+   ```json
+   {
+      "status": "Successful",
+      "message": "User registered successfully",
+      "data": {
+         "id": 1,
+         "firstName": "John",
+         "lastName": "Doe",
+         "phoneNumber": "+2348123456789",
+         "username": "john.doe@gmail.com",
+         "verified": false,
+         "roles": [
+            {
+               "id": 1,
+               "name": "ROLE_ADMIN",
+               "permissions": [
+                  "users:read"
+               ]
+            }
+         ]
+      }
+   }
+   ```
+
+2. `POST '/api/v1/auth/login'`
+
+   - Authenticates a user
+   - Body: A JSON of the user's username and password
+
+   ```json
+   {
+       "username": "john.doe@gmail.com",
+       "password": "password"
+   }
+   ```
+   - Returns: A JSON of access token, token type, expires in (seconds), and a refresh token.
+
+   ```json
+   {
+       "accessToken": "accessToken",
+       "tokenType": "bearer",
+       "expiresIn": 1800,
+       "refreshToken": "refreshToken"
+   }
+   ```
+
+3. `POST '/api/v1/auth/refresh'`
+
+   - Refreshes the access token upon expiration
+   - Body: A JSON of the refresh token
+
+   ```json
+   {
+      "refreshToken": "refreshToken"
+   }
+   ```
+   - Returns: A JSON of the new access token, token type, expires in (seconds), and the refresh token that was passed in.
+
+   ```json
+   {
+       "accessToken": "accessToken",
+       "tokenType": "bearer",
+       "expiresIn": 1800,
+       "refreshToken": "refreshToken"
+   }
+   ```
+
+4. `POST '/api/v1/auth/logout'` - `Protected`
+
+   - Invalidates a user's active tokens
+
+   - Returns: A JSON of the following response 
+
+      ```json
+      {
+         "status": "Successful",
+         "message": "User logged out successfully",
+         "data": null
+      }
+      ```
+     
+5. `GET '/api/v1/users'`
+   - Fetches all users
+
+   - Returns: A JSON of the registered user's details.
+
+   ```json
+   {
+      "status": "Successful",
+      "message": null,
+      "data": {
+         "content": [
+              {
+                  "id": 1,
+                  "firstName": "John",
+                  "lastName": "Doe",
+                  "phoneNumber": "+2348123456789",
+                  "username": "john.doe@gmail.com",
+                  "verified": false,
+                  "roles": [
+                      { 
+                          "id": 1,
+                          "name": "ROLE_ADMIN",
+                          "permissions": [
+                              "users:read"
+                          ]
+                      }
+                  ]
+              }
+         ]
+      }
+   }
+   ```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 - [Spring Boot v3.1.2](https://spring.io/projects/spring-boot) - Spring Boot 3
