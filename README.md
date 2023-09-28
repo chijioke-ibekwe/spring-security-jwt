@@ -175,7 +175,7 @@ This project comes with the following APIs:
       }
       ```
      
-5. `GET '/api/v1/users'`
+5. `GET '/api/v1/users'` - `Protected`
    - Fetches all users
 
    - Returns: A JSON of the registered user's details.
