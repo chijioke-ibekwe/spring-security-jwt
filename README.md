@@ -76,7 +76,7 @@ To use this project:
 
 Feel free to begin customizations!
 
-## API Documentation
+## 📄 API Documentation <a name="api_docs"></a>
 This project comes with the following APIs:
 1. `POST '/api/v1/users'`
    - Registers a new user.
