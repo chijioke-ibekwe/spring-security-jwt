@@ -28,7 +28,7 @@ This is a fully configured Spring Security JWT module using the new Spring Boot 
 frameworks. It provides all the spring security JWT starter code you need to quickly bootstrap your small to medium scale 
 projects, allowing you to focus on your peculiar business logic. This project supports the following features:
 - User registration
-- User login using the password grant type
+- User login using their username and password
 - User token refresh using the refresh token
 - User logout
 - API method security with user roles and permissions
