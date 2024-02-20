@@ -8,14 +8,14 @@
 		<version>3.1.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.codemuse</groupId>
+	<groupId>dev.chijiokeibekwe</groupId>
 	<artifactId>jwt-security</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>jwt-security</name>
 	<description>Spring boot project with fully configured JWT authentication and authorization</description>
 	<properties>
 		<java.version>17</java.version>
-		<exec.mainClass>com.codemuse.jwtsecurity.JwtSecurityApplication</exec.mainClass>
+		<exec.mainClass>dev.chijiokeibekwe.jwtsecurity.JwtSecurityApplication</exec.mainClass>
 		<jjwt.version>0.11.5</jjwt.version>
 	</properties>
 	<dependencies>
