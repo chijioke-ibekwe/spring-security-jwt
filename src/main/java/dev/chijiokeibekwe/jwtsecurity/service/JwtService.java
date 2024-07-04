@@ -1,14 +1,8 @@
 package dev.chijiokeibekwe.jwtsecurity.service;
 
-import dev.chijiokeibekwe.jwtsecurity.dto.CustomUserDetails;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
+import org.springframework.security.core.Authentication;
 
 public interface JwtService {
 
-    String generateAccessToken(CustomUserDetails userDetails);
-
-    String generateRefreshToken(CustomUserDetails userDetails);
-
-    Jws<Claims> validateToken(String token);
+    String generateAccessToken(Authentication authentication);
 }

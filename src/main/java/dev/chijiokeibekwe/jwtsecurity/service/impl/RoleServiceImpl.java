@@ -9,6 +9,9 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import static dev.chijiokeibekwe.jwtsecurity.enums.UserType.ADMIN;
+import static dev.chijiokeibekwe.jwtsecurity.enums.UserType.CUSTOMER;
+
 @Service
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService {
@@ -16,11 +19,7 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Role getRoleByUserType(UserType userType) {
-        RoleName roleName = switch (userType) {
-            case CUSTOMER -> RoleName.ROLE_CUSTOMER;
-            case ADMIN -> RoleName.ROLE_ADMIN;
-        };
+    public Role getRoleByName(RoleName roleName) {
 
         return roleRepository.findByName(roleName).orElseThrow(() -> new
                 EntityNotFoundException("Role not found"));

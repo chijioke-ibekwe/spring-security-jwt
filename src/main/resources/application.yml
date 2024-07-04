@@ -1,5 +1,6 @@
 server:
   port: 8081
+  host: http://localhost:8081
 
 spring:
   application:
@@ -11,15 +12,25 @@ spring:
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
     show-sql: true
   liquibase:
     change-log: 'classpath:/db/changelog-master.yaml'
 
-authentication:
-  secret-key: ${{ SECRET_KEY }}
-  access-token:
-    expiration-in-seconds: 1800
-  refresh-token:
-    expiration-in-seconds: 86400
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem
+  expiration-in-seconds: 21600
+
+springdoc:
+  api-docs:
+    path: /api-docs
+
+logging:
+  level:
+    org:
+      springframework:
+        security: TRACE
+    dev:
+      chijiokeibekwe:
+        librarymanagementsystem: INFO

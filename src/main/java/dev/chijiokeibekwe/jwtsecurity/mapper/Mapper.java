@@ -3,6 +3,7 @@ package dev.chijiokeibekwe.jwtsecurity.mapper;
 import dev.chijiokeibekwe.jwtsecurity.dto.CustomUserDetails;
 import dev.chijiokeibekwe.jwtsecurity.dto.response.RoleResponse;
 import dev.chijiokeibekwe.jwtsecurity.dto.response.UserResponse;
+import dev.chijiokeibekwe.jwtsecurity.entity.Role;
 import dev.chijiokeibekwe.jwtsecurity.entity.User;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -40,17 +41,20 @@ public class Mapper {
 
         List<RoleResponse> roles = new ArrayList<>();
 
-        user.getRoles().forEach(role -> {
-            RoleResponse roleResponse = new RoleResponse();
-            BeanUtils.copyProperties(role, roleResponse, "permissions");
-
-            List<String> permissions = new ArrayList<>();
-            role.getPermissions().forEach(p -> permissions.add(p.getName()));
-            roleResponse.setPermissions(permissions);
-            roles.add(roleResponse);
-        });
+        user.getRoles().forEach(role -> roles.add(toRoleResponse(role)));
 
         userResponse.setRoles(roles);
         return userResponse;
+    }
+
+    public static RoleResponse toRoleResponse(Role role) {
+        RoleResponse roleResponse = new RoleResponse();
+        BeanUtils.copyProperties(role, roleResponse, "permissions");
+
+        List<String> permissions = new ArrayList<>();
+        role.getPermissions().forEach(p -> permissions.add(p.getName()));
+        roleResponse.setPermissions(permissions);
+
+        return roleResponse;
     }
 }

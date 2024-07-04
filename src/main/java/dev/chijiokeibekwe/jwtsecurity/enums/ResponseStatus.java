@@ -2,17 +2,22 @@ package dev.chijiokeibekwe.jwtsecurity.enums;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RoleName {
-    ROLE_USER ("role_user"), ROLE_ADMIN ("role_admin");
+public enum ResponseStatus {
+
+    SUCCESSFUL("Successful"),
+
+    FAILED("Failed");
 
     private final String value;
 
-    RoleName(String value) {
+    ResponseStatus(String value)
+    {
         this.value = value;
     }
 
     @JsonValue
-    public String getValue() {
+    public String getValue()
+    {
         return value;
     }
 }

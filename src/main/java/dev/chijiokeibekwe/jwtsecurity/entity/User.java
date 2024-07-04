@@ -4,23 +4,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@Builder
+@SuperBuilder
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class User extends BaseEntity {
 
     @NotNull(message = "First name is required")
     private String firstName;
@@ -31,10 +28,8 @@ public class User {
     private String phoneNumber;
 
     @JsonIgnore
-    @NotNull(message = "Password is required")
     private String password;
 
-    @Column(unique = true)
     @NotNull(message = "Username is required")
     private String username;
 
@@ -54,5 +49,5 @@ public class User {
     }, inverseJoinColumns = {
             @JoinColumn(name = "role_id", referencedColumnName = "id")
     })
-    private Set<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 }

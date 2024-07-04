@@ -1,0 +1,24 @@
+server:
+  port: 8088
+  host: localhost
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    change-log: 'classpath:/db/changelog-master.yaml'
+
+rsa:
+  public-key: classpath:certs/public.pem
+  private-key: classpath:certs/private.pem
+  expiration-in-seconds: 21600
