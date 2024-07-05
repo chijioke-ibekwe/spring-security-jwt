@@ -1,9 +1,9 @@
 HELP.md
 target/
+src/main/resources/certs/
 
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
-!**/src/main/resources/certs/
 !**/src/test/**/target/
 
 ### STS ###
