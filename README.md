@@ -11,7 +11,7 @@
 
 ---
 
-<p align="center"> Spring Boot project starter code fully configured with JWT authentication and authorization, using Spring Boot 3 and Spring Security 6. Features user login, logout, token refresh and user roles/permissions
+<p align="center"> Spring Boot project starter code fully configured with JWT authentication and authorization, using Spring Boot 3 and Spring Security 6.
     <br> 
 </p>
 
@@ -25,15 +25,14 @@
 
 ## 🧐 About <a name = "about"></a>
 This is a fully configured Spring Security JWT module using the new Spring Boot 3 and Spring Security 6 
-frameworks. It provides all the spring security JWT starter code you need to quickly bootstrap your small to medium scale 
-projects, allowing you to focus on your peculiar business logic. This project supports the following features:
+frameworks. It provides spring security JWT configurations you need to quickly bootstrap your small to medium scale 
+projects. This project is configured to issue self-signed JWTs which eliminate the need to introduce a standalone 
+authorization server. The following features are supported:
 - User registration
 - User login using their username and password
-- User token refresh using the refresh token
-- User logout
 - API method security with user roles and permissions
 
-**If you find this project useful, kindly drop a star on this repo. I'd really appreciate it.**
+**If you find this project useful, kindly drop a star on this repo. I'd really appreciate it 🙂.**
 
 ## 🏁 Getting Started <a name = "getting_started"></a>
 ### Prerequisites  
@@ -42,6 +41,7 @@ To successfully use this project, you'll need the following installed on your ma
 as a minimum version.
 - **Apache Maven**
 - **Docker**
+- **OpenSSL**
 
 ## 🎈 Usage <a name="usage"></a>
 To use this project:
@@ -51,9 +51,8 @@ To use this project:
    ```
    git clone https://github.com/<your-git-username>/spring-security-jwt.git
    ```
-
 3. A docker compose file is attached to this project to help you easily set up a development database. To do this,
-   run the following command in your terminal or command prompt
+   run the following command in your terminal from the root directory of the project
    ```
    docker compose up -d
    ```
@@ -64,9 +63,14 @@ To use this project:
 4. Using the `pgAdmin` interface or your `psql`, create a database called `spring-security-jwt`. If you wish to name 
    this database something different, make sure to update the database configuration in the `application.yml` file.
 
-5. Setup an env variable called `SECRET_KEY`. This value will be used in signing and decoding your JWT.
-
-6. Lastly, run the following command to start the application:
+5. Generate the asymmetric keys for encrypting and decrypting the JWT, by running the `generate_keys.sh` script
+   from the root directory of the project using:
+   ```
+   ./generate_keys.sh
+   ```
+   Ensure that the generated keys directory is git ignored to prevent committing them to source control
+6. Lastly, run the following command to start the application, or simply run the `JwtSecurityApplication.java` class 
+   via your IDE:
    ```
    mvn clean compile exec:java
    ```
@@ -74,142 +78,17 @@ To use this project:
    The schema created will have the following structure.  
    <img height="400" src="./src/main/resources/db/schema.png" width="600"/>
 
-Feel free to begin customizations!
+   Feel free to begin customizations!
 
 ## 📄 API Documentation <a name="api_docs"></a>
-This project comes with the following APIs:
-1. `POST '/api/v1/users'`
-   - Registers a new user.
-   - Body: A JSON containing the details of the user as shown below:
-
-   ```json
-   {
-       "firstName": "John",
-       "lastName": "Doe",
-       "email": "john.doe@gmail.com",
-       "password": "password",
-       "phoneNumber": "+2348123456789",
-       "type": "ADMIN"
-   }
-   ```
-   - Returns: A JSON of the registered user's details.
-
-   ```json
-   {
-      "status": "Successful",
-      "message": "User registered successfully",
-      "data": {
-         "id": 1,
-         "firstName": "John",
-         "lastName": "Doe",
-         "phoneNumber": "+2348123456789",
-         "username": "john.doe@gmail.com",
-         "verified": false,
-         "roles": [
-            {
-               "id": 1,
-               "name": "ROLE_ADMIN",
-               "permissions": [
-                  "users:read"
-               ]
-            }
-         ]
-      }
-   }
-   ```
-
-2. `POST '/api/v1/auth/login'`
-
-   - Authenticates a user
-   - Body: A JSON of the user's username and password
-
-   ```json
-   {
-       "username": "john.doe@gmail.com",
-       "password": "password"
-   }
-   ```
-   - Returns: A JSON of access token, token type, expires in (seconds), and a refresh token.
-
-   ```json
-   {
-       "accessToken": "accessToken",
-       "tokenType": "bearer",
-       "expiresIn": 1800,
-       "refreshToken": "refreshToken"
-   }
-   ```
-
-3. `POST '/api/v1/auth/refresh'`
-
-   - Refreshes the access token upon expiration
-   - Body: A JSON of the refresh token
-
-   ```json
-   {
-      "refreshToken": "refreshToken"
-   }
-   ```
-   - Returns: A JSON of the new access token, token type, expires in (seconds), and the refresh token that was passed in.
-
-   ```json
-   {
-       "accessToken": "accessToken",
-       "tokenType": "bearer",
-       "expiresIn": 1800,
-       "refreshToken": "refreshToken"
-   }
-   ```
-
-4. `POST '/api/v1/auth/logout'` - `Protected`
-
-   - Invalidates a user's active tokens
-
-   - Returns: A JSON of the following response 
-
-      ```json
-      {
-         "status": "Successful",
-         "message": "User logged out successfully",
-         "data": null
-      }
-      ```
-     
-5. `GET '/api/v1/users'` - `Protected`
-   - Fetches all users
-
-   - Returns: A JSON of the registered user's details.
-
-   ```json
-   {
-      "status": "Successful",
-      "message": null,
-      "data": {
-         "content": [
-              {
-                  "id": 1,
-                  "firstName": "John",
-                  "lastName": "Doe",
-                  "phoneNumber": "+2348123456789",
-                  "username": "john.doe@gmail.com",
-                  "verified": false,
-                  "roles": [
-                      { 
-                          "id": 1,
-                          "name": "ROLE_ADMIN",
-                          "permissions": [
-                              "users:read"
-                          ]
-                      }
-                  ]
-              }
-         ]
-      }
-   }
-   ```
+This project is configured with swagger for API documentation. When the application is started, visit the following link
+on your browser to view the documentation for the existing APIs:
+```
+http://localhost:8081/swagger-ui/index.html
+```
 
 ## ⛏️ Built Using <a name = "built_using"></a>
-- [Spring Boot v3.1.2](https://spring.io/projects/spring-boot) - Spring Boot 3
+- [Spring Boot v3.2.5](https://spring.io/projects/spring-boot) - Spring Boot 3
 - [PostgreSQL](https://www.postgresql.org/) - PostgreSQL Database
 
 ## ✍️ Authors <a name = "authors"></a>
