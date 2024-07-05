@@ -76,7 +76,7 @@ To use this project:
    ```
    Liquibase will run the migration files within the `resources/db` directory, upon startup, to set up the database.
    The schema created will have the following structure.  
-   <img height="400" src="./src/main/resources/db/schema.png" width="600"/>
+   <img height="400" src="./src/main/resources/db/erd.png" width="600"/>
 
    Feel free to begin customizations!
 
